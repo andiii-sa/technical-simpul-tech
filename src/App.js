@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { IconSearch } from "assets/icons";
+import "./App.css";
+import "./assets/styles/style.scss";
+import FloatButton from "components/molecules/FloatButton";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h2 className='text-red-700'>HAI</h2>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex bg-gray-1 w-full min-h-screen relative">
+      <FloatButton />
+      <div className="w-[285px] border-r border-l-gray-6"></div>
+      <div className="w-full flex flex-col">
+        <div className="bg-gray-2 px-[26px] pt-[19px] pb-[23px]">
+          <IconSearch className="text-[36px] w-4 h-4" />
+        </div>
+      </div>
     </div>
   );
 }
