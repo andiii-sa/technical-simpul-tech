@@ -98,7 +98,7 @@ const FloatButton = () => {
         >
           <Circle
             className={`bg-gray-6 ${active?.classActiveCircle}`}
-            onClick={() => setActive(initActive)}
+            // onClick={() => setActive(initActive)}
           >
             {isActiveMenu ? (
               <active.icon className={active?.classActiveIcon} />
