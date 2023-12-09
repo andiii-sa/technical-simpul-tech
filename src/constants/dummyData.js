@@ -90,6 +90,16 @@ export const listInbox = [
         isRead: false,
       },
       {
+        sender: "Angel",
+        content: "Hei 2",
+        date: new Date(),
+        isRead: false,
+        reply: {
+          sender: "Cameron Philips",
+          content: "Hei",
+        },
+      },
+      {
         sender: "Rey",
         content: "Hei 3",
         date: new Date(),
@@ -100,6 +110,10 @@ export const listInbox = [
         content: "Hei",
         date: new Date(),
         isRead: false,
+        reply: {
+          sender: "Angel",
+          content: "Hei 2",
+        },
       },
       {
         sender: "Rey",

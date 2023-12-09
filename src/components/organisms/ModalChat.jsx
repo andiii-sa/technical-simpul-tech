@@ -131,6 +131,7 @@ const DetailChat = ({ chatId }) => {
   const { setPanel } = useContext(ChatContext);
   const { handleCloseMenu } = useContext(MenuContext);
   const [chat, setChat] = useState();
+  const [reply, setReply] = useState(null);
   const color = [
     {
       text: "text-chat-orange-2",
@@ -274,6 +275,8 @@ const DetailChat = ({ chatId }) => {
                     colorBuble?.find?.((f) => f?.name === message?.sender)
                       ?.color?.background
                   }
+                  handleReply={(val) => setReply(val)}
+                  reply={message?.reply ?? null}
                 />
               </Fragment>
             ))}
@@ -301,8 +304,22 @@ const DetailChat = ({ chatId }) => {
           </span>
         </div>
       )}
+
+      {reply && (
+        <div className="absolute bottom-0 border border-gray-3 mb-[60px] w-[calc(100%-115.35px)] flex flex-col gap-2 p-[10px] bg-gray-6 mt-auto rounded-[5px] ml-5">
+          <div className="flex justify-between gap-2 items-start">
+            <span className="text-gray-2 font-bold">{`Replying to ${reply?.sender}`}</span>
+            <IconClose
+              color="fill-gray-2"
+              className="w-3 h-3 cursor-pointer"
+              onClick={() => setReply(null)}
+            />
+          </div>
+          <span className="text-gray-2">{reply?.content}</span>
+        </div>
+      )}
       <div
-        className={`flex gap-2 items-center mx-5 mb-5 ${
+        className={`flex gap-2 items-center mx-5 mb-5 z-10 ${
           loadingConnect ? "!mt-3" : "!mt-auto"
         }`}
       >
@@ -321,6 +338,8 @@ const ItemMessage = ({
   isGroup,
   textColor,
   backgroundColor,
+  handleReply,
+  reply,
 }) => {
   const [isMore, setIsMore] = useState(false);
 
@@ -341,6 +360,16 @@ const ItemMessage = ({
       >
         {isSender ? "You" : sender}
       </span>
+      {reply && (
+        <div className={`flex gap-1 `}>
+          <div
+            className={`flex flex-col rounded-[5px] p-[10px] bg-gray-6 border border-gray-5`}
+          >
+            <span className="text-gray-2 text-sm">{reply?.content}</span>
+          </div>
+        </div>
+      )}
+
       <div className={`flex gap-1 ${isSender ? "" : "flex-row-reverse"}`}>
         <div className="w-4 relative">
           <div className="cursor-pointer" onClick={() => setIsMore(!isMore)}>
@@ -351,13 +380,36 @@ const ItemMessage = ({
               isMore ? "flex" : "hidden"
             }`}
           >
-            <div className="py-[6px] px-[19px] text-xs text-blue-1 bg-white cursor-pointer">
-              Edit
-            </div>
-            <div className="bg-gray-3 h-[1px] w-full my-0 py-0" />
-            <div className="py-[6px] px-[19px] text-xs text-indicator-red bg-white cursor-pointer">
-              Delete
-            </div>
+            {isSender ? (
+              <>
+                <div className="py-[6px] px-[19px] text-xs text-blue-1 bg-white cursor-pointer">
+                  Edit
+                </div>
+                <div className="bg-gray-3 h-[1px] w-full my-0 py-0" />
+                <div className="py-[6px] px-[19px] text-xs text-indicator-red bg-white cursor-pointer">
+                  Delete
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="py-[6px] px-[19px] text-xs text-blue-1 bg-white cursor-pointer">
+                  Share
+                </div>
+                <div className="bg-gray-3 h-[1px] w-full my-0 py-0" />
+                <div
+                  className="py-[6px] px-[19px] text-xs text-blue-1 bg-white cursor-pointer"
+                  onClick={() => {
+                    handleReply({
+                      sender: sender,
+                      content: content,
+                    });
+                    setIsMore(!isMore);
+                  }}
+                >
+                  Reply
+                </div>
+              </>
+            )}
           </div>
         </div>
         <div
