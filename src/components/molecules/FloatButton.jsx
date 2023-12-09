@@ -5,6 +5,7 @@ import {
 } from "assets/icons";
 import Circle from "components/atoms/Circle";
 import ModalChat from "components/organisms/ModalChat";
+import ModalTask from "components/organisms/ModalTask";
 import { MenuContext } from "constants";
 import { useMemo, useState } from "react";
 
@@ -44,6 +45,8 @@ const FloatButton = () => {
       {/* Modal */}
       <MenuContext.Provider value={{ handleCloseMenu }}>
         {active?.title === "Inbox" ? <ModalChat /> : null}
+        <ModalTask />
+
         <Circle
           className={`bg-primary-blue transition-all duration-500 ${
             isActiveMenu ? "!w-0" : ""

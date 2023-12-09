@@ -231,3 +231,34 @@ export const listInbox = [
     date: "2023-12-08T10:50:04.970305Z",
   },
 ];
+
+export const listTask = [
+  {
+    id: 1,
+    type: 1,
+    title: "Close off",
+    isDone: false,
+    date: "10/12/2023",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium ipsum nesciunt quos? Suscipit dolores aut vitae obcaecati eaque repellendus, labore eius ab necessitatibus, laborum corrupti commodi, nostrum sequi minus at.",
+  },
+  {
+    id: 2,
+    type: 1,
+    title: "Sanitasi",
+    isDone: true,
+    date: "25/12/2023",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium ipsum nesciunt quos? Suscipit dolores aut vitae obcaecati eaque repellendus, labore eius ab necessitatibus, laborum corrupti commodi, nostrum sequi minus at.",
+  },
+  {
+    id: 3,
+    type: 2,
+    title:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius laboriosam, delectus, non aspernatur soluta odio maxime nostrum quisquam, optio consequatur dolorem quae ipsum. Voluptas molestias incidunt in laborum, voluptatum accusantium.",
+    isDone: false,
+    date: "15/12/2023",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium ipsum nesciunt quos? Suscipit dolores aut vitae obcaecati eaque repellendus, labore eius ab necessitatibus, laborum corrupti commodi, nostrum sequi minus at.",
+  },
+];

@@ -36,19 +36,20 @@ export const IconTravel = () => {
   </svg>;
 };
 
-export const IconSchedule = () => (
+export const IconSchedule = ({ color = "fill-blue-1", className }) => (
   <svg
-    width="26"
-    height="26"
+    // width="26"
+    // height="26"
     viewBox="0 0 26 26"
-    fill="none"
+    // fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    className={`${color} ${className}`}
   >
     <path
       fillRule="evenodd"
       clipRule="evenodd"
       d="M13.2508 0.514648C6.31048 0.514648 0.690308 6.1474 0.690308 13.0877C0.690308 20.0281 6.31048 25.6608 13.2508 25.6608C20.2038 25.6608 25.8365 20.0281 25.8365 13.0877C25.8365 6.1474 20.2038 0.514648 13.2508 0.514648ZM13.2637 23.1462C7.70636 23.1462 3.20519 18.6451 3.20519 13.0878C3.20519 7.53045 7.70636 3.02928 13.2637 3.02928C18.821 3.02928 23.3221 7.53045 23.3221 13.0878C23.3221 18.6451 18.821 23.1462 13.2637 23.1462ZM12.0061 6.80121H13.8921V13.4021L19.55 16.7591L18.607 18.3056L12.0061 14.3451V6.80121Z"
-      fill="#2F80ED"
+      // fill="#2F80ED"
     />
   </svg>
 );
@@ -123,19 +124,21 @@ export const IconList = () => (
   </svg>
 );
 
-export const IconEdit = () => (
+export const IconEdit = ({ color = "fill-blue-1", className, ...props }) => (
   <svg
-    width="24"
-    height="23"
+    // width="24"
+    // height="23"
     viewBox="0 0 24 23"
-    fill="none"
+    // fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    className={`${color} ${className}`}
+    {...props}
   >
     <path
       fillRule="evenodd"
       clipRule="evenodd"
       d="M19.3092 0C18.9949 0 18.668 0.125731 18.4291 0.36462L16.1282 2.6655L20.8431 7.38041L23.144 5.07953C23.6343 4.58918 23.6343 3.79708 23.144 3.30673L20.2019 0.36462C19.9504 0.113158 19.6361 0 19.3092 0ZM14.7831 7.569L15.9398 8.72573L4.54857 20.117H3.39185V18.9602L14.7831 7.569ZM0.877197 17.9167L14.783 4.01081L19.498 8.72572L5.59211 22.6316H0.877197V17.9167Z"
-      fill="#2F80ED"
+      // fill="#2F80ED"
     />
   </svg>
 );
@@ -229,36 +232,48 @@ export const IconArrowDown = ({ color = "fill-gray-6", className }) => (
   </svg>
 );
 
-export const IconCheckboxOutline = () => (
+export const IconCheckboxOutline = ({
+  color = "fill-gray-4",
+  className,
+  ...props
+}) => (
   <svg
-    width="28"
-    height="28"
+    // width="28"
+    // height="28"
     viewBox="0 0 28 28"
-    fill="none"
+    // fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    className={`${color} ${className}`}
+    {...props}
   >
     <path
       fillRule="evenodd"
       clipRule="evenodd"
       d="M3.54391 0.526306H24.6667C26.3264 0.526306 27.6843 1.8842 27.6843 3.54385V24.6667C27.6843 26.3263 26.3264 27.6842 24.6667 27.6842H3.54391C1.88426 27.6842 0.526367 26.3263 0.526367 24.6667V3.54385C0.526367 1.8842 1.88426 0.526306 3.54391 0.526306ZM24.6667 24.6667V3.54385H3.54391V24.6667H24.6667Z"
-      fill="#BDBDBD"
+      // fill="#BDBDBD"
     />
   </svg>
 );
 
-export const IconCheckbox = () => (
+export const IconCheckbox = ({
+  color = "fill-gray-4",
+  className,
+  ...props
+}) => (
   <svg
-    width="28"
-    height="28"
+    // width="28"
+    // height="28"
     viewBox="0 0 28 28"
-    fill="none"
+    // fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    className={`${color} ${className}`}
+    {...props}
   >
     <path
       fillRule="evenodd"
       clipRule="evenodd"
       d="M24.5089 0.526306H3.38607C1.72642 0.526306 0.36853 1.8842 0.36853 3.54385V24.6667C0.36853 26.3263 1.72642 27.6842 3.38607 27.6842H24.5089C26.1685 27.6842 27.5264 26.3263 27.5264 24.6667V3.54385C27.5264 1.8842 26.1685 0.526306 24.5089 0.526306ZM24.5089 24.6667H3.38607V3.54385H24.5089V24.6667ZM20.8576 7.43649L22.985 9.57895L10.9148 21.6491L4.87975 15.6291L7.02221 13.5018L10.9148 17.3793L20.8576 7.43649Z"
-      fill="#BDBDBD"
+      // fill="#BDBDBD"
     />
   </svg>
 );
@@ -351,6 +366,48 @@ export const IconClose = ({
     <path
       d="M21 2.115L18.885 0L10.5 8.385L2.115 0L0 2.115L8.385 10.5L0 18.885L2.115 21L10.5 12.615L18.885 21L21 18.885L12.615 10.5L21 2.115Z"
       //   fill="#F2F2F2"
+    />
+  </svg>
+);
+export const IconExpand = ({
+  color = "fill-gray-2",
+  className = "",
+  ...props
+}) => (
+  <svg
+    // width="10"
+    // height="8"
+    viewBox="0 0 10 8"
+    // fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={`${color} ${className}`}
+    {...props}
+  >
+    <path
+      d="M1.175 7.08753L5 3.27086L8.825 7.08752L10 5.91252L5 0.912526L-1.02722e-07 5.91253L1.175 7.08753Z"
+      // fill="#4F4F4F"
+    />
+  </svg>
+);
+export const IconCalendar = ({
+  color = "fill-gray-2",
+  className = "",
+  ...props
+}) => (
+  <svg
+    // width="14"
+    // height="16"
+    viewBox="0 0 14 16"
+    // fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={`${color} ${className}`}
+    {...props}
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M12.3334 2.00002H11.6667V0.666687H10.3334V2.00002H3.66671V0.666687H2.33337V2.00002H1.66671C0.933374 2.00002 0.333374 2.60002 0.333374 3.33335V14C0.333374 14.7334 0.933374 15.3334 1.66671 15.3334H12.3334C13.0667 15.3334 13.6667 14.7334 13.6667 14V3.33335C13.6667 2.60002 13.0667 2.00002 12.3334 2.00002ZM12.3334 14H1.66671V6.66669H12.3334V14ZM1.66671 5.33335H12.3334V3.33335H1.66671V5.33335Z"
+      // fill="#4F4F4F"
     />
   </svg>
 );

@@ -1,9 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-    font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
+}
+
+.react-datepicker__triangle {
+  &::after,
+  &::before {
+    display: none;
+  }
+}
+
+.react-datepicker-popper {
+  // transform: translate3d(302px, 237.5px, 0px) !important;
+  padding-left: 187px;
+}
+.react-datepicker-popper[data-placement^="bottom"] {
+  padding-top: 19px !important;
 }
