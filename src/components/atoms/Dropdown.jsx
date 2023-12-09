@@ -10,7 +10,7 @@ const Dropdown = ({ lists = [], label, className, classNameContent }) => {
       </div>
       {open && (
         <div
-          className={`absolute flex flex-col border border-gray-3 rounded-[5px] overflow-hidden bg-white mt-2 ${classNameContent}`}
+          className={`absolute z-10 flex flex-col border border-gray-3 rounded-[5px] overflow-hidden bg-white mt-2 ${classNameContent}`}
         >
           {lists?.map(({ label, className, onClick, ...props }, idx) => (
             <div

@@ -239,6 +239,7 @@ export const listTask = [
     title: "Close off",
     isDone: false,
     date: "10/12/2023",
+    tags: ["Offline Meeting", "ASAP"],
     description:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium ipsum nesciunt quos? Suscipit dolores aut vitae obcaecati eaque repellendus, labore eius ab necessitatibus, laborum corrupti commodi, nostrum sequi minus at.",
   },
@@ -248,6 +249,7 @@ export const listTask = [
     title: "Sanitasi",
     isDone: true,
     date: "25/12/2023",
+    tags: ["Important ASAP", "Virtual Meeting"],
     description:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium ipsum nesciunt quos? Suscipit dolores aut vitae obcaecati eaque repellendus, labore eius ab necessitatibus, laborum corrupti commodi, nostrum sequi minus at.",
   },
@@ -260,5 +262,40 @@ export const listTask = [
     date: "15/12/2023",
     description:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium ipsum nesciunt quos? Suscipit dolores aut vitae obcaecati eaque repellendus, labore eius ab necessitatibus, laborum corrupti commodi, nostrum sequi minus at.",
+  },
+];
+
+export const listTags = [
+  {
+    name: "Important ASAP",
+    color: "bg-blue-3",
+  },
+  {
+    name: "Offline Meeting",
+    color: "bg-sticker-orange-1",
+  },
+  {
+    name: "Virtual Meeting",
+    color: "bg-sticker-orange-2",
+  },
+  {
+    name: "ASAP",
+    color: "bg-sticker-green-1",
+  },
+  {
+    name: "Client Related",
+    color: "bg-sticker-green-2",
+  },
+  {
+    name: "Self Task",
+    color: "bg-sticker-violet",
+  },
+  {
+    name: "Appointments",
+    color: "bg-sticker-pink",
+  },
+  {
+    name: "Court Related",
+    color: "bg-sticker-darkblue",
   },
 ];

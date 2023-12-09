@@ -34,6 +34,7 @@ module.exports = {
           "green-2": "#CBF1C2",
           violet: "#CFCEF9",
           pink: "#F9E0FD",
+          darkblue: "#9DD0ED",
         },
         gray: {
           1: "#333333",
@@ -49,6 +50,8 @@ module.exports = {
         },
         blue: {
           1: "#2F80ED",
+          2: "#F9F9F9",
+          3: "#E5F1FF",
         },
       },
       transitionDuration: {},

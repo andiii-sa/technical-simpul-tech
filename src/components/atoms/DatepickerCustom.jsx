@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const DatepickerCustom = ({ date, handleDate = () => {} }) => {
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex gap-2 items-center p-2">
       <IconSchedule
         color={`${date ? "fill-blue-1" : "fill-gray-2"}`}
         className="w-[17px] h-[17px]"

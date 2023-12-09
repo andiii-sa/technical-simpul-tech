@@ -1,11 +1,17 @@
-import { IconArrowDown, IconEdit, IconExpand, IconMore } from "assets/icons";
+import {
+  IconArrowDown,
+  IconBookmarks,
+  IconEdit,
+  IconExpand,
+  IconMore,
+} from "assets/icons";
 import Button from "components/atoms/Button";
 import Checkbox from "components/atoms/Checkbox";
 import DatepickerCustom from "components/atoms/DatepickerCustom";
 import Dropdown from "components/atoms/Dropdown";
 import Modal from "components/atoms/Modal";
 import StateLoading from "components/molecules/StateLoading";
-import { listTask } from "constants/dummyData";
+import { listTags, listTask } from "constants/dummyData";
 import moment from "moment";
 import { useEffect, useMemo, useRef, useState } from "react";
 
@@ -15,6 +21,7 @@ const initTask = {
   title: "Type task title",
   isDone: false,
   date: "",
+  tags: [],
   description: "No Description",
 };
 
@@ -108,6 +115,7 @@ const ModalTask = () => {
               handleChangeTitle={(val) => handleChange(task?.id, val, "title")}
               handleCheckbox={(val) => handleChange(task?.id, val, "isDone")}
               handleDate={(val) => handleChange(task?.id, val, "date")}
+              handleTags={(val) => handleChange(task?.id, val, "tags")}
               handleDescription={(val) =>
                 handleChange(task?.id, val, "description")
               }
@@ -130,8 +138,9 @@ const ItemTask = ({
   handleDelete,
   handleDate,
   handleDescription,
+  handleTags,
 }) => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   const rangeDate = () => {
     const now = moment(new Date()).format("YYYY-MM-DD");
@@ -146,7 +155,7 @@ const ItemTask = ({
 
   return (
     <div
-      className={`flex gap-5 py-3 ${
+      className={`flex relative gap-5 py-3 ${
         showBorder ? "border-t border-t-gray-3" : ""
       }`}
     >
@@ -207,6 +216,10 @@ const ItemTask = ({
             value={data?.description}
             handleChange={(val) => handleDescription(val)}
           />
+          <TagField
+            value={data?.tags}
+            handleChange={(val) => handleTags(val)}
+          />
         </div>
       </div>
     </div>
@@ -242,7 +255,7 @@ const DescriptionField = ({ value, handleChange = () => {} }) => {
   const [edit, setEdit] = useState(false);
 
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex gap-2 items-center p-2">
       <IconEdit
         className="w-[17px] h-[17px] flex-none self-start cursor-pointer"
         onClick={() => setEdit(!edit)}
@@ -261,6 +274,66 @@ const DescriptionField = ({ value, handleChange = () => {} }) => {
       ) : (
         <p className="text-gray-2">{value}</p>
       )}
+    </div>
+  );
+};
+
+const TagField = ({ value = [], handleChange = () => {} }) => {
+  const [edit, setEdit] = useState(false);
+
+  return (
+    <div className="flex gap-2 items-center bg-blue-2 p-2">
+      <IconBookmarks
+        className="w-[17px] h-[17px] flex-none self-start cursor-pointer"
+        color={value?.length ? "fill-blue-1" : "fill-gray-3"}
+        onClick={() => setEdit(!edit)}
+      />
+      {edit && (
+        <div className="absolute ml-7 bg-white border top-full -mt-2 border-gray-3 p-3 rounded-md z-10 flex flex-col gap-2">
+          {listTags?.map((tag, idx) => (
+            <ItemTag
+              key={idx}
+              color={tag?.color}
+              text={tag?.name}
+              className={`cursor-pointer ${
+                value?.some((s) => s === tag?.name)
+                  ? "border border-blue-1"
+                  : ""
+              }`}
+              onClick={() => {
+                if (value?.some((s) => s === tag?.name)) {
+                  let temp = value?.filter((f) => f !== tag?.name);
+                  handleChange(temp);
+                } else {
+                  let temp = [...value, tag?.name];
+                  handleChange(temp);
+                }
+              }}
+            />
+          ))}
+        </div>
+      )}
+      <div className="flex gap-2 items-center flex-wrap">
+        {value?.map((tag, idx) => (
+          <ItemTag
+            color={listTags?.find((f) => f.name === tag)?.color}
+            text={tag}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const ItemTag = ({ className, color, text = "-", ...props }) => {
+  return (
+    <div
+      className={`px-3 py-2 rounded-[5px] ${
+        color || "bg-sticker-blue"
+      } ${className}`}
+      {...props}
+    >
+      <span className="text-gray-2 font-bold">{text}</span>
     </div>
   );
 };
