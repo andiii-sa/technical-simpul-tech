@@ -45,7 +45,7 @@ const FloatButton = () => {
       {/* Modal */}
       <MenuContext.Provider value={{ handleCloseMenu }}>
         {active?.title === "Inbox" ? <ModalChat /> : null}
-        <ModalTask />
+        {active?.title === "Task" ? <ModalTask /> : null}
 
         <Circle
           className={`bg-primary-blue transition-all duration-500 ${
