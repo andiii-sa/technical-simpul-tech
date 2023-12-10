@@ -22,7 +22,7 @@ const initTask = {
   isDone: false,
   date: "",
   tags: [],
-  description: "No Description",
+  description: "",
 };
 
 const ModalTask = () => {
@@ -258,6 +258,7 @@ const DescriptionField = ({ value, handleChange = () => {} }) => {
     <div className="flex gap-2 items-center p-2">
       <IconEdit
         className="w-[17px] h-[17px] flex-none self-start cursor-pointer"
+        color={value ? "fill-blue-1" : "fill-gray-3"}
         onClick={() => setEdit(!edit)}
       />
       {edit ? (
@@ -272,7 +273,7 @@ const DescriptionField = ({ value, handleChange = () => {} }) => {
           placeholder="Description"
         />
       ) : (
-        <p className="text-gray-2">{value}</p>
+        <p className="text-gray-2">{value || `No Description`}</p>
       )}
     </div>
   );
