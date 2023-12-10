@@ -25,21 +25,14 @@ import {
 } from "react";
 
 const ModalChat = () => {
-  const [loading, setLoading] = useState(true);
   const [panel, setPanel] = useState("list");
   const [idChat, setIdChat] = useState(null);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
 
   return (
     <Modal className={panel === "detail" ? "!py-0 !px-0" : ""}>
       <ChatContext.Provider value={{ setPanel, setIdChat }}>
-        {panel === "list" && <ListChat loading={loading} />}
-        {panel === "detail" && <DetailChat loading={loading} chatId={idChat} />}
+        {panel === "list" && <ListChat />}
+        {panel === "detail" && <DetailChat chatId={idChat} />}
       </ChatContext.Provider>
     </Modal>
   );
@@ -47,16 +40,42 @@ const ModalChat = () => {
 
 export default ModalChat;
 
-const ListChat = ({ loading }) => {
+const ListChat = () => {
   const { setPanel, setIdChat } = useContext(ChatContext);
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      let temp = listInbox;
+      if (search) {
+        temp = listInbox?.filter(
+          (f) =>
+            f?.name
+              ?.trim()
+              ?.toLowerCase()
+              ?.includes(search?.trim()?.toLowerCase()) ||
+            f?.title
+              ?.trim()
+              ?.toLowerCase()
+              ?.includes(search?.trim()?.toLowerCase())
+        );
+      }
+      setData(temp ?? []);
+      setLoading(false);
+    }, 1000);
+  }, [search]);
+
   return (
     <>
-      <SearchBar />
+      <SearchBar value={search} handleChange={(val) => setSearch(val)} />
       {loading ? (
         <StateLoading />
       ) : (
         <div className="flex flex-col w-full overflow-y-auto">
-          {listInbox?.map((inbox, idx) => (
+          {data?.map((inbox, idx) => (
             <div
               key={idx}
               className={`flex gap-[17px] items-center py-[24px] cursor-pointer ${
@@ -132,6 +151,8 @@ const DetailChat = ({ chatId }) => {
   const { handleCloseMenu } = useContext(MenuContext);
   const [chat, setChat] = useState();
   const [reply, setReply] = useState(null);
+  const [newMessage, setNewMessage] = useState("");
+
   const color = [
     {
       text: "text-chat-orange-2",
@@ -323,8 +344,31 @@ const DetailChat = ({ chatId }) => {
           loadingConnect ? "!mt-3" : "!mt-auto"
         }`}
       >
-        <TypeBar />
-        <Button>Send</Button>
+        <TypeBar
+          value={newMessage}
+          onChange={(e) => setNewMessage(e?.target?.value)}
+        />
+        <Button
+          onClick={() => {
+            setChat((prev) => ({
+              ...prev,
+              messages: [
+                ...prev?.messages,
+                {
+                  sender: user,
+                  content: newMessage,
+                  date: new Date(),
+                  isRead: false,
+                  reply: reply ?? null,
+                },
+              ],
+            }));
+            setNewMessage("");
+            setReply(null);
+          }}
+        >
+          Send
+        </Button>
       </div>
     </>
   );
